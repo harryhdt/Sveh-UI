@@ -115,10 +115,10 @@ const onChange = () => {
 			{disabled}
 			type="button"
 			class="absolute {size === 'small'
-				? 'top-1.5 right-1.5'
+				? 'right-1.5 top-1.5'
 				: size === 'big'
-				? 'top-4  right-3'
-				: 'top-[11px] right-2'} transform outline-none transition-transform duration-200 focus-visible:rounded-md focus-visible:ring-2 focus-visible:ring-gray-300 {disabled
+				? 'right-3  top-4'
+				: 'right-2 top-[11px]'} transform outline-none transition-transform duration-200 focus-visible:rounded-md focus-visible:ring-2 focus-visible:ring-gray-300 {disabled
 				? 'cursor-not-allowed opacity-50'
 				: ''} {show && '-rotate-180'}"
 			on:click={() => (show = !show)}
@@ -129,7 +129,7 @@ const onChange = () => {
 	{#if show}
 		<div
 			transition:fly|local={{ y: -8, duration: 200 }}
-			class="select-area absolute right-0 left-0 mt-2 max-h-[208px] space-y-[2px] overflow-y-auto rounded-md bg-white p-1 shadow {optionAreaClass}"
+			class="select-area absolute left-0 right-0 mt-2 max-h-[208px] space-y-[2px] overflow-y-auto rounded-md bg-white p-1 shadow {optionAreaClass}"
 		>
 			{#if Array.isArray(data)}
 				{#each data.filter((x) => (value ? x : x.text
@@ -142,7 +142,7 @@ const onChange = () => {
 							searchValue = data.find((x) => x.key == value)?.text;
 						}}
 						type="button"
-						class="block w-full rounded-md py-1 px-2 text-left outline-none hover:bg-gray-100 focus-visible:bg-gray-200 {(searchValue ===
+						class="block w-full rounded-md px-2 py-1 text-left outline-none hover:bg-gray-100 focus-visible:bg-gray-200 {(searchValue ===
 							select.text ||
 							value === select.text) &&
 							'bg-gray-100'}">{select.text}</button
@@ -151,9 +151,9 @@ const onChange = () => {
 					<div class="block w-full rounded-md py-1 px-2 text-left text-gray-500">No data</div>
 				{/each}
 			{:else if data === 'loading'}
-				<div class="block w-full rounded-md py-1 px-2 text-left text-gray-500">Loading...</div>
+				<div class="block w-full rounded-md px-2 py-1 text-left text-gray-500">Loading...</div>
 			{:else}
-				<div class="block w-full rounded-md py-1 px-2 text-left text-error-600">Data error</div>
+				<div class="block w-full rounded-md px-2 py-1 text-left text-error-600">Data error</div>
 			{/if}
 		</div>
 	{/if}

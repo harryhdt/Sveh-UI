@@ -1,22 +1,18 @@
 import { SvelteComponentTyped } from "svelte";
+export declare const TABS: {};
 declare const __propDef: {
     props: {
-        show?: boolean | undefined;
-        disableEsc?: boolean | undefined;
+        defaultKey: string;
+        development?: boolean | undefined;
         class?: string | undefined;
     };
     events: {
-        close: CustomEvent<any>;
+        change: CustomEvent<any>;
     } & {
         [evt: string]: CustomEvent<any>;
     };
     slots: {
-        button: {
-            toggleShow: () => boolean;
-        };
-        default: {
-            toggleShow: () => boolean;
-        };
+        default: {};
     };
 };
 export type IndexProps = typeof __propDef.props;

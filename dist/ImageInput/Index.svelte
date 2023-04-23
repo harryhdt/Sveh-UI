@@ -76,7 +76,7 @@ const openFileUpload = (e) => {
 				<Button
 					type="button"
 					on:click={deleteImageReal}
-					class="absolute top-6 -left-2 z-30 h-7 w-7 rounded-full !p-0 opacity-70 transition-opacity duration-300 hover:opacity-100"
+					class="absolute -left-2 top-6 z-30 h-7 w-7 rounded-full !p-0 opacity-70 transition-opacity duration-300 hover:opacity-100"
 					color="error"
 					{disabled}
 				>
@@ -86,6 +86,7 @@ const openFileUpload = (e) => {
 			<img in:fade|local src={imageSrc ? imageSrc : imageReal} alt="Preview" class="h-auto w-20" />
 		{:else}
 			<button
+				type="button"
 				on:click={openFileUpload}
 				in:fade|local
 				class="flex h-20 w-20 items-center justify-center rounded-full bg-secondary-200"

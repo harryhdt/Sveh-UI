@@ -1,12 +1,15 @@
 <script>import { XIcon } from "lucide-svelte";
 import { afterUpdate } from "svelte";
+import { createEventDispatcher } from "svelte";
+const dispatch = createEventDispatcher();
 let className = "";
 export let color;
 export let message;
 export { className as class };
 export let closeAble = true;
-export let onClose = () => {
+let onClose = () => {
   alert.remove();
+  dispatch("close");
 };
 const colorize = () => {
   return {

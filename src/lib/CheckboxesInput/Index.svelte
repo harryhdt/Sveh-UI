@@ -7,8 +7,8 @@
 
 	// props
 	export let name: string;
-	export let text: string = '';
-	export let value: boolean = false;
+	export let text = '';
+	export let value = false;
 	export let values: (string | number)[] = [];
 	export let label = '';
 	export let error = '';
@@ -48,7 +48,7 @@
 		{#if !single}
 			{#each options as option, i}
 				<label
-					class="mr-4 mb-2 flex flex-shrink-0 items-center {disabled ? 'cursor-not-allowed' : ''}"
+					class="mb-2 mr-4 flex flex-shrink-0 items-center {disabled ? 'cursor-not-allowed' : ''}"
 					for="{option.key}-{i}"
 				>
 					<input
@@ -77,7 +77,7 @@
 			{/each}
 		{:else}
 			<label
-				class="mr-4 mb-2 flex flex-shrink-0 items-center {disabled ? 'cursor-not-allowed' : ''}"
+				class="mb-2 mr-4 flex flex-shrink-0 items-center {disabled ? 'cursor-not-allowed' : ''}"
 				for={name}
 			>
 				<input

@@ -33,7 +33,7 @@
 		<div
 			class="peer {sizes[
 				size
-			]} rounded-full bg-gray-200 after:absolute  after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-primary-600 peer-checked:after:translate-x-full peer-checked:after:border-white  dark:border-gray-300 dark:bg-gray-200"
+			]} rounded-full bg-gray-200 after:absolute after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-primary-600 peer-checked:after:translate-x-full peer-checked:after:border-white dark:border-gray-300 dark:bg-gray-200"
 		/>
 		{#if showText}
 			<span

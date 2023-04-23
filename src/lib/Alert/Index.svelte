@@ -3,6 +3,10 @@
 	import { XIcon } from 'lucide-svelte';
 	import { afterUpdate } from 'svelte';
 
+	import { createEventDispatcher } from 'svelte';
+
+	const dispatch = createEventDispatcher();
+
 	//
 	let className = '';
 
@@ -11,8 +15,10 @@
 	export let message: string;
 	export { className as class };
 	export let closeAble = true;
-	export let onClose: () => void = () => {
+
+	let onClose: () => void = () => {
 		alert.remove();
+		dispatch('close');
 	};
 
 	// coloring

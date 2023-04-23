@@ -1,11 +1,11 @@
 <script>import { focusTrap } from "svelte-focus-trap";
 import { fade } from "svelte/transition";
+import { createEventDispatcher } from "svelte";
+const dispatch = createEventDispatcher();
 let className = "";
 export let show = false;
 export let disableEsc = false;
 export { className as class };
-export let onClose = () => {
-};
 const handleKeyDown = (e) => {
   if (e.code === "Escape" && !disableEsc) {
     closeModal();
@@ -13,7 +13,7 @@ const handleKeyDown = (e) => {
 };
 const closeModal = () => {
   show = false;
-  onClose();
+  dispatch("close");
 };
 const toggleShow = () => show = !show;
 let element;

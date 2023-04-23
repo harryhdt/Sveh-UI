@@ -1,14 +1,14 @@
-<script>import { clickOutside } from "../Tools/click-outside";
-import { fly } from "svelte/transition";
+<script>import { fly } from "svelte/transition";
 import { createEventDispatcher } from "svelte";
 import TextInput from "../TextInput/Index.svelte";
 import { focusTrap } from "svelte-focus-trap";
 import { ChevronDown as ChevronDownIcon } from "lucide-svelte";
+import { clickOutside } from "../Tools/click-outside";
 let className = "";
 export let data = [];
 export let name;
 export let show = false;
-export let value = "";
+export let value = [];
 export let label = "";
 export let placeholder = "Search...";
 export let error = "";
@@ -22,34 +22,15 @@ export let disabled = false;
 export let disableEsc = false;
 export let size = "medium";
 let container;
-let realValue = !value ? value : "";
-let searchValue = value && Array.isArray(data) ? data.find((x) => x.key == value)?.text : "";
-const handleInput = () => {
-  value = realValue;
-  onChange();
-  setTimeout(() => {
-    handleSearch();
-  }, 1);
-};
+let searchValue = "";
 const handleKeyDown = (e) => {
   if (e.code === "Escape" && !disableEsc) {
     container.querySelector("input")?.blur();
     show = false;
   }
 };
-const handleSearch = () => {
-  if (show && searchValue && Array.isArray(data) && data.map((x) => x.text.toLowerCase()).indexOf(searchValue.toLowerCase()) > -1) {
-    const val = data.find((x) => x.text.toLowerCase() === searchValue.toLowerCase());
-    if (val) {
-      value = val.key;
-      setTimeout(() => {
-        searchValue = val.text;
-      }, 1);
-    }
-  }
-};
 const handleBlur = () => {
-  if (value === realValue)
+  if (data.filter((x) => x.text.toLowerCase().indexOf(searchValue.toLowerCase()) > -1).length <= 0 || value.indexOf(data.find((x) => x.text.toLowerCase() === searchValue.toLowerCase())?.key) > -1)
     searchValue = "";
 };
 const dispatch = createEventDispatcher();
@@ -82,12 +63,16 @@ const onChange = () => {
 		</div>
 	{/if}
 	<div class="relative">
+		{#if value.length}
+			<div class="absolute left-1.5 top-1.5 rounded-md bg-primary-600 px-2 py-0.5 text-white">
+				{value.length}
+			</div>
+		{/if}
 		<TextInput
 			{name}
 			on:focus={() => (show = true)}
 			type="text"
 			bind:value={searchValue}
-			on:input={handleInput}
 			on:blur={handleBlur}
 			on:keydown={(e) => {
 				const options = container.querySelectorAll('.select-area > button');
@@ -113,7 +98,7 @@ const onChange = () => {
 				});
 			}}
 			{placeholder}
-			class="pr-8 {className}"
+			class="pr-8 {className} {value.length ? 'pl-10' : ''}"
 			autocomplete="off"
 			readonly={!search}
 			{required}
@@ -126,10 +111,10 @@ const onChange = () => {
 			{disabled}
 			type="button"
 			class="absolute {size === 'small'
-				? 'top-1.5 right-1.5'
+				? 'right-1.5 top-1.5'
 				: size === 'big'
-				? 'top-4  right-3'
-				: 'top-[11px] right-2'} transform outline-none transition-transform duration-200 focus-visible:rounded-md focus-visible:ring-2 focus-visible:ring-gray-300 {disabled
+				? 'right-3  top-4'
+				: 'right-2 top-[11px]'} transform outline-none transition-transform duration-200 focus-visible:rounded-md focus-visible:ring-2 focus-visible:ring-gray-300 {disabled
 				? 'cursor-not-allowed opacity-50'
 				: ''} {show && '-rotate-180'}"
 			on:click={() => (show = !show)}
@@ -140,31 +125,33 @@ const onChange = () => {
 	{#if show}
 		<div
 			transition:fly|local={{ y: -8, duration: 200 }}
-			class="select-area absolute right-0 left-0 mt-2 max-h-[208px] space-y-[2px] overflow-y-auto rounded-md bg-white p-1 shadow {optionAreaClass}"
+			class="select-area absolute left-0 right-0 mt-2 max-h-[208px] space-y-[2px] overflow-y-auto rounded-md bg-white p-1 shadow {optionAreaClass}"
 		>
 			{#if Array.isArray(data)}
-				{#each data.filter((x) => (value ? x : x.text
-								.toLowerCase()
-								.indexOf(searchValue.toLowerCase()) > -1)) as select}
+				{#each data.filter((x) => x.text
+							.toLowerCase()
+							.indexOf(searchValue.toLowerCase()) > -1 || value.indexOf(x.key) > -1) as select}
 					<button
 						on:click|preventDefault={() => {
-							show = false;
-							value = select.key;
-							searchValue = data.find((x) => x.key == value)?.text;
+							if (value.indexOf(select.key) > -1) {
+								value = value.filter((x) => x !== select.key);
+							} else {
+								value[value.length] = select.key;
+							}
+							onChange();
 						}}
 						type="button"
-						class="block w-full rounded-md py-1 px-2 text-left outline-none hover:bg-gray-100 focus-visible:bg-gray-200 {(searchValue ===
-							select.text ||
-							value === select.text) &&
-							'bg-gray-100'}">{select.text}</button
+						class="block w-full rounded-md px-2 py-1 text-left outline-none hover:bg-gray-100 focus-visible:bg-gray-200 {value.indexOf(
+							select.key
+						) > -1 && 'bg-gray-100'}">{select.text}</button
 					>
 				{:else}
 					<div class="block w-full rounded-md py-1 px-2 text-left text-gray-500">No data</div>
 				{/each}
 			{:else if data === 'loading'}
-				<div class="block w-full rounded-md py-1 px-2 text-left text-gray-500">Loading...</div>
+				<div class="block w-full rounded-md px-2 py-1 text-left text-gray-500">Loading...</div>
 			{:else}
-				<div class="block w-full rounded-md py-1 px-2 text-left text-error-600">Data error</div>
+				<div class="block w-full rounded-md px-2 py-1 text-left text-error-600">Data error</div>
 			{/if}
 		</div>
 	{/if}

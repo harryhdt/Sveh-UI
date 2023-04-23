@@ -6,10 +6,11 @@ declare const __propDef: {
         message: string;
         class?: string | undefined;
         closeAble?: boolean | undefined;
-        onClose?: (() => void) | undefined;
         size?: TextInputSize | undefined;
     };
     events: {
+        close: CustomEvent<any>;
+    } & {
         [evt: string]: CustomEvent<any>;
     };
     slots: {};

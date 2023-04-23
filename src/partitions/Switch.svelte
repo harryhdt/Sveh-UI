@@ -2,7 +2,7 @@
 	import { Switch } from '$lib';
 	import type { TextInputSize } from '$lib/types';
 
-	let label: string = 'Hidup ngga';
+	let label = 'Hidup ngga';
 	let value = '';
 	let checked = false;
 	let error = '';

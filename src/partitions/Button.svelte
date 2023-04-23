@@ -6,7 +6,7 @@
 	let size: ButtonSize = 'medium';
 	let variant: ButtonVariant = 'solid';
 	let type: ButtonType = 'button';
-	let actionText: string = 'Say Hi!';
+	let actionText = 'Say Hi!';
 	const action = () => (actionText ? alert(actionText) : {});
 	let color: ButtonColor = 'primary';
 	let align: ButtonAlign = 'left';

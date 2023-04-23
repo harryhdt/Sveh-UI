@@ -3,7 +3,7 @@
 	import type { ColorProps, TextInputSize } from '$lib/types';
 
 	let color: ColorProps = 'primary';
-	let message: string = 'Ini alert';
+	let message = 'Ini alert';
 	let closeAble = true;
 	let size: TextInputSize = 'medium';
 </script>

@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { SelectInput } from '$lib';
+	import { MultiselectInput } from '$lib';
 	import type { TextInputSize } from '$lib/types';
 
 	let show = false;
-	let value: string | number | boolean = '';
+	let value: string[] | number[] | boolean[] = [];
 	let label = 'Select bro';
 	let placeholder = 'Search...';
 	let error = '';
@@ -18,7 +18,7 @@
 <div id="button" class="border border-gray-200 bg-gray-50 p-4">
 	<h3 class="text-2xl font-bold">Multiselect Input</h3>
 	<div class="my-4 min-h-[150px] max-w-lg bg-gray-100 p-4">
-		<SelectInput
+		<MultiselectInput
 			data={[
 				{
 					key: '1',

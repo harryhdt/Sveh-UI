@@ -7,7 +7,7 @@ Svelte component powered by tailwind css, for my personal project only.
 Please install following libs:
 
 - Tailwind 3
-- Tailwind form
+- Tailwind Form
 - Lucide icons
 - Svelte Focus Trap
 

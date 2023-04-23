@@ -10,6 +10,7 @@
 	import Popover from '../partitions/Popover.svelte';
 	import SelectInput from '../partitions/SelectInput.svelte';
 	import Switch from '../partitions/Switch.svelte';
+	import Tab from '../partitions/Tab.svelte';
 	import TextInput from '../partitions/TextInput.svelte';
 </script>
 
@@ -31,6 +32,7 @@
 		<Switch />
 		<Modal />
 		<Popover />
+		<Tab />
 	</div>
 </div>
 
