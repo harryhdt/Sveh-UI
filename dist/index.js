@@ -1,4 +1,4 @@
-import '../app.css';
+// import '../app.css';
 export { default as Button } from './Button/Index.svelte';
 export { default as Alert } from './Alert/Index.svelte';
 export { default as CheckboxesInput } from './CheckboxesInput/Index.svelte';
