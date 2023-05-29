@@ -76,6 +76,7 @@ const sizes = {
 			{placeholder}
 			{autocomplete}
 			{required}
+			{readonly}
 			{disabled}
 		/>
 	{:else if type === 'password'}
@@ -101,6 +102,7 @@ const sizes = {
 			{placeholder}
 			{autocomplete}
 			{required}
+			{readonly}
 			{disabled}
 		/>
 	{:else if type === 'multiline'}
@@ -125,6 +127,7 @@ const sizes = {
 				: 'border-gray-200 bg-gray-50 text-gray-600 focus:ring-gray-200'} {className}"
 			{placeholder}
 			{required}
+			{readonly}
 			{disabled}
 		/>
 	{/if}

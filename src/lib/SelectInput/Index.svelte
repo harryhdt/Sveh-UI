@@ -25,6 +25,7 @@
 	export let search = false;
 	export let required = false;
 	export let disabled = false;
+	export let readonly = false;
 	export let disableEsc = false;
 	export let size: TextInputSize = 'medium';
 	//
@@ -91,7 +92,7 @@
 	<div class="relative">
 		<TextInput
 			{name}
-			on:focus={() => (show = true)}
+			on:focus={() => (show = readonly ? false : true)}
 			type="text"
 			bind:value={searchValue}
 			on:input={handleInput}
@@ -122,27 +123,29 @@
 			{placeholder}
 			class="pr-8 {className}"
 			autocomplete="off"
-			readonly={!search}
+			readonly={!search || readonly}
 			{required}
 			{error}
 			{helper}
 			{disabled}
 			{size}
 		/>
-		<button
-			{disabled}
-			type="button"
-			class="absolute {size === 'small'
-				? 'right-1.5 top-1.5'
-				: size === 'big'
-				? 'right-3  top-4'
-				: 'right-2 top-[11px]'} transform outline-none transition-transform duration-200 focus-visible:rounded-md focus-visible:ring-2 focus-visible:ring-gray-300 {disabled
-				? 'cursor-not-allowed opacity-50'
-				: ''} {show && '-rotate-180'}"
-			on:click={() => (show = !show)}
-		>
-			<ChevronDownIcon class="h-5 w-5" />
-		</button>
+		{#if !readonly}
+			<button
+				{disabled}
+				type="button"
+				class="absolute {size === 'small'
+					? 'right-1.5 top-1.5'
+					: size === 'big'
+					? 'right-3  top-4'
+					: 'right-2 top-[11px]'} transform outline-none transition-transform duration-200 focus-visible:rounded-md focus-visible:ring-2 focus-visible:ring-gray-300 {disabled
+					? 'cursor-not-allowed opacity-50'
+					: ''} {show && '-rotate-180'}"
+				on:click={() => (show = !show)}
+			>
+				<ChevronDownIcon class="h-5 w-5" />
+			</button>
+		{/if}
 	</div>
 	{#if show}
 		<div

@@ -83,6 +83,7 @@
 			{placeholder}
 			{autocomplete}
 			{required}
+			{readonly}
 			{disabled}
 		/>
 	{:else if type === 'password'}
@@ -108,6 +109,7 @@
 			{placeholder}
 			{autocomplete}
 			{required}
+			{readonly}
 			{disabled}
 		/>
 	{:else if type === 'multiline'}
@@ -132,6 +134,7 @@
 				: 'border-gray-200 bg-gray-50 text-gray-600 focus:ring-gray-200'} {className}"
 			{placeholder}
 			{required}
+			{readonly}
 			{disabled}
 		/>
 	{/if}

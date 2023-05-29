@@ -2,9 +2,9 @@ import { SvelteComponentTyped } from "svelte";
 export declare const TABS: {};
 declare const __propDef: {
     props: {
+        class?: string | undefined;
         defaultKey: string;
         development?: boolean | undefined;
-        class?: string | undefined;
     };
     events: {
         change: CustomEvent<any>;

@@ -1,5 +1,7 @@
 <script>import Label from "../Constants/Label.svelte";
+import { createEventDispatcher } from "svelte";
 import { ucFirst } from "../Tools/string";
+const dispatch = createEventDispatcher();
 let className = "";
 export let name;
 export let text = "";
@@ -23,6 +25,7 @@ for (let i = 0; i < options.length; i++) {
 }
 const handleChecked = (e, i) => {
   const { checked, value: value2 } = e.currentTarget;
+  dispatch("change", { value: value2, checked });
   if (checked && !options[i].checked) {
     options[i].checked = true;
     values[values.length] = valueAsNumber ? parseInt(value2) : value2;
@@ -30,6 +33,10 @@ const handleChecked = (e, i) => {
     options[i].checked = false;
     values = values.filter((x) => x !== (valueAsNumber ? parseInt(value2) : value2));
   }
+};
+const handleSingleChecked = (e) => {
+  const { checked, value: value2 } = e.currentTarget;
+  dispatch("change", { value: value2, checked });
 };
 </script>
 
@@ -78,6 +85,7 @@ const handleChecked = (e, i) => {
 					id={name}
 					{name}
 					bind:checked={value}
+					on:click={handleSingleChecked}
 					class="mr-1 {size === 'small'
 						? 'p-1'
 						: size === 'big'

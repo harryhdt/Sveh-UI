@@ -11,10 +11,10 @@
 	const dispatch = createEventDispatcher();
 
 	let className = '';
+	export { className as class };
 
 	export let defaultKey: string;
 	export let development = false;
-	export { className as class };
 
 	let activeTab = defaultKey;
 

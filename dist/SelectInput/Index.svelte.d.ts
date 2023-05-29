@@ -16,6 +16,7 @@ declare const __propDef: {
         search?: boolean | undefined;
         required?: boolean | undefined;
         disabled?: boolean | undefined;
+        readonly?: boolean | undefined;
         disableEsc?: boolean | undefined;
         size?: TextInputSize | undefined;
     };

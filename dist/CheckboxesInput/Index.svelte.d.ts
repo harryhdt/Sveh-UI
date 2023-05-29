@@ -22,6 +22,8 @@ declare const __propDef: {
         single?: boolean | undefined;
     };
     events: {
+        change: CustomEvent<any>;
+    } & {
         [evt: string]: CustomEvent<any>;
     };
     slots: {
