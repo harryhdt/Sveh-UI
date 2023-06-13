@@ -14,6 +14,10 @@
 	import TextInput from '../partitions/TextInput.svelte';
 </script>
 
+<svelte:head>
+	<title>Sveh UI</title>
+</svelte:head>
+
 <div id="ui-demo" class="space-y-4 p-4">
 	<div class="mb-4 flex items-center justify-between">
 		<h1 class="text-4xl font-medium">Sveh UI</h1>

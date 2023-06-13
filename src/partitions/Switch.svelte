@@ -8,6 +8,8 @@
 	let error = '';
 	let helper = '';
 	let required = false;
+	let disabled = false;
+	let readonly = false;
 	let size: TextInputSize = 'medium';
 	let showText = true;
 </script>
@@ -15,7 +17,19 @@
 <div id="button" class="border border-gray-200 bg-gray-50 p-4">
 	<h3 class="text-2xl font-bold">Switch</h3>
 	<div class="my-4 min-h-[150px] max-w-lg bg-gray-100 p-4">
-		<Switch name="bali" {value} {label} {error} {helper} {required} {size} {checked} {showText} />
+		<Switch
+			name="bali"
+			{value}
+			{label}
+			{error}
+			{helper}
+			{required}
+			{size}
+			{checked}
+			{showText}
+			{disabled}
+			{readonly}
+		/>
 	</div>
 	<div class="flex max-w-lg flex-wrap items-start gap-4">
 		<div>
@@ -33,6 +47,14 @@
 		<label>
 			<input type="checkbox" bind:checked={required} />
 			<span>Required</span>
+		</label>
+		<label>
+			<input type="checkbox" bind:checked={disabled} />
+			<span>Disabled</span>
+		</label>
+		<label>
+			<input type="checkbox" bind:checked={readonly} />
+			<span>Readonly</span>
 		</label>
 		<label>
 			<input type="checkbox" bind:checked={showText} />

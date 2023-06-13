@@ -80,7 +80,7 @@
 
 <label
 	bind:this={container}
-	class="relative z-[80] block {disabled ? 'cursor-not-allowed' : ''} {containerClass}"
+	class="relative z-[80] block {disabled ? 'cursor-not-allowed opacity-50' : ''} {containerClass}"
 	use:clickOutside
 	use:focusTrap
 	on:keydown={handleKeyDown}
@@ -121,7 +121,7 @@
 				});
 			}}
 			{placeholder}
-			class="pr-8 {className}"
+			class="pr-8 {className} {disabled ? '!opacity-100' : ''}"
 			autocomplete="off"
 			readonly={!search || readonly}
 			{required}

@@ -12,6 +12,8 @@
 	export let error = '';
 	export let helper = '';
 	export let required = false;
+	export let disabled = false;
+	export let readonly = false;
 	export let containerClass = '';
 	export let optionsClass = '';
 	export let showText = true;
@@ -24,12 +26,23 @@
 	};
 </script>
 
-<div class="block {containerClass}">
+<div class="block {disabled ? 'cursor-not-allowed opacity-50' : ''} {containerClass}">
 	<Label {label} {error} {required}>
 		<slot name="suffix-label" slot="suffix-label" />
 	</Label>
-	<label class="relative inline-flex cursor-pointer items-center {optionsClass}">
-		<input type="checkbox" {name} class="peer sr-only {className}" {value} bind:checked />
+	<label
+		class="relative inline-flex cursor-pointer items-center {optionsClass} {readonly
+			? 'pointer-events-none'
+			: ''}"
+	>
+		<input
+			type="checkbox"
+			{name}
+			class="peer sr-only {className}"
+			{value}
+			bind:checked
+			{disabled}
+		/>
 		<div
 			class="peer {sizes[
 				size

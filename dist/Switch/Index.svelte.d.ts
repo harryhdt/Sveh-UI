@@ -10,6 +10,8 @@ declare const __propDef: {
         error?: string | undefined;
         helper?: string | undefined;
         required?: boolean | undefined;
+        disabled?: boolean | undefined;
+        readonly?: boolean | undefined;
         containerClass?: string | undefined;
         optionsClass?: string | undefined;
         showText?: boolean | undefined;
