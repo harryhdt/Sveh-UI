@@ -29,7 +29,7 @@
 	export let disableEsc = false;
 	export let size: TextInputSize = 'medium';
 	//
-
+	let selectInputElm: HTMLInputElement;
 	let container: HTMLElement;
 
 	let realValue = !value ? value : '';
@@ -37,7 +37,6 @@
 
 	const handleInput = () => {
 		value = realValue;
-		onChange();
 		//
 		setTimeout(() => {
 			handleSearch();
@@ -71,11 +70,6 @@
 	const handleBlur = () => {
 		if (value === realValue) searchValue = '';
 	};
-
-	const dispatch = createEventDispatcher();
-	const onChange = () => {
-		dispatch('change');
-	};
 </script>
 
 <label
@@ -91,7 +85,6 @@
 	</Label>
 	<div class="relative">
 		<TextInput
-			{name}
 			on:focus={() => (show = readonly ? false : true)}
 			type="text"
 			bind:value={searchValue}
@@ -147,6 +140,7 @@
 			</button>
 		{/if}
 	</div>
+	<input bind:this={selectInputElm} type="text" {name} bind:value on:change class="hidden" />
 	{#if show}
 		<div
 			transition:fly|local={{ y: -8, duration: 200 }}
@@ -161,6 +155,9 @@
 							show = false;
 							value = select.key;
 							searchValue = data.find((x) => x.key == value)?.text;
+							setTimeout(() => {
+								selectInputElm.dispatchEvent(new Event('change'));
+							}, 10);
 						}}
 						type="button"
 						class="block w-full rounded-md px-2 py-1 text-left outline-none hover:bg-gray-100 focus-visible:bg-gray-200 {(searchValue ===

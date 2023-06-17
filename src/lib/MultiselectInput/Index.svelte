@@ -28,6 +28,7 @@
 	export let size: TextInputSize = 'medium';
 	//
 
+	let selectInputElm: HTMLInputElement;
 	let container: HTMLElement;
 
 	let searchValue = '';
@@ -46,11 +47,6 @@
 			value.indexOf(data.find((x) => x.text.toLowerCase() === searchValue.toLowerCase())?.key) > -1
 		)
 			searchValue = '';
-	};
-
-	const dispatch = createEventDispatcher();
-	const onChange = () => {
-		dispatch('change');
 	};
 </script>
 
@@ -137,6 +133,7 @@
 			<ChevronDownIcon class="h-5 w-5" />
 		</button>
 	</div>
+	<input bind:this={selectInputElm} type="text" {name} bind:value on:change class="hidden" />
 	{#if show}
 		<div
 			transition:fly|local={{ y: -8, duration: 200 }}
@@ -153,7 +150,9 @@
 							} else {
 								value[value.length] = select.key;
 							}
-							onChange();
+							setTimeout(() => {
+								selectInputElm.dispatchEvent(new Event('change'));
+							}, 10);
 						}}
 						type="button"
 						class="block w-full rounded-md px-2 py-1 text-left outline-none hover:bg-gray-100 focus-visible:bg-gray-200 {value.indexOf(
