@@ -70,30 +70,31 @@
 		<Label {label} {error} {required}>
 			<slot name="suffix-label" slot="suffix-label" />
 		</Label>
-		{#if showImages.length}
-			<div class="flex items-end gap-4 overflow-auto">
-				{#each imageSrc as src, i}
-					{#if showImages[i]}
-						<img in:fade|local {src} alt="Preview" class="h-auto w-20" />
-					{/if}
-				{/each}
-			</div>
-		{:else if imageReal && imageReal.length}
+		{#if showImages.length || (imageReal && imageReal.length)}
 			<div class="-ml-2 mt-2 flex items-end gap-4 overflow-x-auto pl-2 pt-2">
-				{#each imageReal as image, i}
-					<div class="relative">
-						<Button
-							type="button"
-							on:click={() => deleteImageReal(i)}
-							class="absolute -left-2 -top-2 z-30 h-7 w-7 rounded-full !p-0 opacity-70 transition-opacity duration-300 hover:opacity-100"
-							color="error"
-							{disabled}
-						>
-							<XIcon class="m-[2px] h-5 w-5" />
-						</Button>
-						<img in:fade|local src={image} alt="Preview" class="h-auto w-20" />
-					</div>
-				{/each}
+				{#if showImages.length}
+					{#each imageSrc as src, i}
+						{#if showImages[i]}
+							<img in:fade|local {src} alt="Preview" class="h-auto w-20" />
+						{/if}
+					{/each}
+				{/if}
+				{#if imageReal && imageReal.length}
+					{#each imageReal as image, i}
+						<div class="relative">
+							<Button
+								type="button"
+								on:click={() => deleteImageReal(i)}
+								class="absolute -left-2 -top-2 z-30 h-7 w-7 rounded-full !p-0 opacity-70 transition-opacity duration-300 hover:opacity-100"
+								color="error"
+								{disabled}
+							>
+								<XIcon class="m-[2px] h-5 w-5" />
+							</Button>
+							<img in:fade|local src={image} alt="Preview" class="h-auto w-20" />
+						</div>
+					{/each}
+				{/if}
 			</div>
 		{:else}
 			<button
