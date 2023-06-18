@@ -1,25 +1,25 @@
 <script lang="ts">
-	import { FileInput } from '$lib';
+	import { ImagesInput } from '$lib';
 	import type { TextInputSize } from '$lib/types';
 
 	let files: FileList | null = null;
-	let placeholder = 'File lu';
-	let label = 'Your file';
-	let accept = '';
+	let placeholder = 'Image lu';
+	let label = 'Your image';
+	let accept: string | undefined = undefined;
 	let error = '';
 	let helper = '';
 	let required = false;
 	let disabled = false;
-	let multiple = false;
 	let onClearFiles: (() => void) | null = null;
 	let size: TextInputSize = 'medium';
+	let imageReal: string[] = [];
 </script>
 
 <div id="button" class="border border-gray-200 bg-gray-50 p-4">
-	<h3 class="text-2xl font-bold">File Input</h3>
+	<h3 class="text-2xl font-bold">Images Input</h3>
 	<div class="my-4 min-h-[150px] max-w-lg bg-gray-100 p-4">
-		<FileInput
-			bind:files
+		<ImagesInput
+			{files}
 			name="bali"
 			{disabled}
 			{placeholder}
@@ -28,7 +28,7 @@
 			{helper}
 			{required}
 			{accept}
-			{multiple}
+			bind:imageReal
 			{size}
 			{onClearFiles}
 		/>
@@ -50,10 +50,6 @@
 			<input type="checkbox" bind:checked={required} />
 			<span>Required</span>
 		</label>
-		<label>
-			<input type="checkbox" bind:checked={multiple} />
-			<span>Multiple</span>
-		</label>
 		<div class="flex items-center gap-1">
 			<span>Placeholder</span>
 			<input type="text" bind:value={placeholder} class="w-32" placeholder="@text" />
@@ -69,6 +65,14 @@
 		<div class="flex items-center gap-1">
 			<span>Helper</span>
 			<input type="text" bind:value={helper} class="w-32" placeholder="@text" />
+		</div>
+		<div class="flex items-center gap-1">
+			<span class="flex-shrink-0">Default image 1</span>
+			<input type="text" class="w-full" bind:value={imageReal[0]} placeholder="@link image" />
+		</div>
+		<div class="flex items-center gap-1">
+			<span class="flex-shrink-0">Default image 2</span>
+			<input type="text" class="w-full" bind:value={imageReal[1]} placeholder="@link image" />
 		</div>
 	</div>
 </div>

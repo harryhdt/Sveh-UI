@@ -5,6 +5,7 @@
 	import CheckboxInput from '../partitions/CheckboxInput.svelte';
 	import FileInput from '../partitions/FileInput.svelte';
 	import ImageInput from '../partitions/ImageInput.svelte';
+	import ImagesInput from '../partitions/ImagesInput.svelte';
 	import Modal from '../partitions/Modal.svelte';
 	import MultiselectInput from '../partitions/MultiselectInput.svelte';
 	import Popover from '../partitions/Popover.svelte';
@@ -29,6 +30,7 @@
 		<TextInput />
 		<FileInput />
 		<ImageInput />
+		<ImagesInput />
 		<SelectInput />
 		<MultiselectInput />
 		<CheckboxInput />

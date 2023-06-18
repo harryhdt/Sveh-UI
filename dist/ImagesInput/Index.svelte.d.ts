@@ -4,7 +4,7 @@ declare const __propDef: {
     props: {
         class?: string | undefined;
         containerClass?: string | undefined;
-        file?: string | File | null | undefined;
+        files?: FileList | null | undefined;
         label?: string | undefined;
         name?: string | undefined;
         placeholder?: string | undefined;
@@ -12,8 +12,8 @@ declare const __propDef: {
         required?: boolean | undefined;
         disabled?: boolean | undefined;
         error?: string | undefined;
-        imageReal?: string | null | undefined;
-        deleteImageReal?: (() => void) | undefined;
+        imageReal?: string[] | null | undefined;
+        deleteImageReal?: ((i: number) => void) | undefined;
         size?: TextInputSize | undefined;
         helper?: string | undefined;
         onClearFiles?: (() => void) | null | undefined;

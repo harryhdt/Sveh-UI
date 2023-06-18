@@ -1,14 +1,13 @@
 <script>import { fade } from "svelte/transition";
-import { afterUpdate, createEventDispatcher } from "svelte";
+import { afterUpdate } from "svelte";
 import Button from "../Button/Index.svelte";
 import FileInput from "../FileInput/Index.svelte";
 import { XIcon, ImageIcon } from "lucide-svelte";
 import Label from "../Constants/Label.svelte";
-let files = null;
 let className = "";
 export { className as class };
 export let containerClass = "";
-export let file = null;
+export let files = null;
 export let label = "Photo";
 export let name = "photo";
 export let placeholder = "Select image";
@@ -17,35 +16,35 @@ export let required = false;
 export let disabled = false;
 export let error = "";
 export let imageReal = null;
-export let deleteImageReal = () => imageReal = "";
+export let deleteImageReal = (i) => {
+  if (imageReal && imageReal.length) {
+    imageReal = imageReal.filter((_, index) => index !== i);
+  }
+};
 export let size = "medium";
 export let helper = "";
 export let onClearFiles = null;
-let showImage = false;
-let imageSrc = "";
+let showImages = [];
+let imageSrc = [];
 $:
   if (files && files.length) {
-    const file0 = files[0];
-    file = file0;
-    if (file0) {
+    for (let i = 0; i < files.length; i++) {
       const reader = new FileReader();
       reader.addEventListener("load", function() {
         if (reader.result) {
-          imageSrc = reader.result.toString();
-          showImage = true;
+          imageSrc[i] = reader.result.toString();
+          showImages[i] = true;
         }
       });
-      reader.readAsDataURL(file0);
-    } else {
-      showImage = false;
+      reader.readAsDataURL(files[i]);
     }
   } else {
-    file = null;
-    imageSrc = "";
-    showImage = false;
+    files = null;
+    imageSrc = [];
+    showImages = [];
   }
 afterUpdate(() => {
-  if (!file) {
+  if (!files?.length) {
     files = null;
   }
 });
@@ -64,19 +63,31 @@ const openFileUpload = (e) => {
 		<Label {label} {error} {required}>
 			<slot name="suffix-label" slot="suffix-label" />
 		</Label>
-		{#if showImage || imageReal}
-			{#if imageReal && !imageSrc}
-				<Button
-					type="button"
-					on:click={deleteImageReal}
-					class="absolute -left-2 top-6 z-30 h-7 w-7 rounded-full !p-0 opacity-70 transition-opacity duration-300 hover:opacity-100"
-					color="error"
-					{disabled}
-				>
-					<XIcon class="m-[2px] h-5 w-5" />
-				</Button>
-			{/if}
-			<img in:fade|local src={imageSrc ? imageSrc : imageReal} alt="Preview" class="h-auto w-20" />
+		{#if showImages.length}
+			<div class="flex items-end gap-4 overflow-auto">
+				{#each imageSrc as src, i}
+					{#if showImages[i]}
+						<img in:fade|local {src} alt="Preview" class="h-auto w-20" />
+					{/if}
+				{/each}
+			</div>
+		{:else if imageReal && imageReal.length}
+			<div class="-ml-2 mt-2 flex items-end gap-4 overflow-x-auto pl-2 pt-2">
+				{#each imageReal as image, i}
+					<div class="relative">
+						<Button
+							type="button"
+							on:click={() => deleteImageReal(i)}
+							class="absolute -left-2 -top-2 z-30 h-7 w-7 rounded-full !p-0 opacity-70 transition-opacity duration-300 hover:opacity-100"
+							color="error"
+							{disabled}
+						>
+							<XIcon class="m-[2px] h-5 w-5" />
+						</Button>
+						<img in:fade|local src={image} alt="Preview" class="h-auto w-20" />
+					</div>
+				{/each}
+			</div>
 		{:else}
 			<button
 				type="button"
@@ -93,11 +104,12 @@ const openFileUpload = (e) => {
 		{containerClass}
 		class={className}
 		{error}
+		on:change
+		multiple
 		{placeholder}
 		{accept}
 		{required}
 		{disabled}
-		on:change
 		bind:files
 		{helper}
 		{size}

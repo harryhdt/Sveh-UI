@@ -4,6 +4,7 @@ export { default as Alert } from '$lib/Alert/Index.svelte';
 export { default as CheckboxesInput } from '$lib/CheckboxesInput/Index.svelte';
 export { default as FileInput } from '$lib/FileInput/Index.svelte';
 export { default as ImageInput } from '$lib/ImageInput/Index.svelte';
+export { default as ImagesInput } from '$lib/ImagesInput/Index.svelte';
 export { default as Modal } from '$lib/Modal/Index.svelte';
 export { default as Popover } from '$lib/Popover/Index.svelte';
 export { default as SelectInput } from '$lib/SelectInput/Index.svelte';

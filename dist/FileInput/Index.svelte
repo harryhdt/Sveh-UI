@@ -46,7 +46,17 @@ $:
 </script>
 
 <label bind:this={labelRef} class="relative block {containerClass}">
-	<input {name} type="file" bind:files class="hidden" {multiple} {required} {disabled} {accept} />
+	<input
+		{name}
+		type="file"
+		bind:files
+		on:change
+		class="hidden"
+		{multiple}
+		{required}
+		{disabled}
+		{accept}
+	/>
 	<div class="relative">
 		<TextInput
 			{label}

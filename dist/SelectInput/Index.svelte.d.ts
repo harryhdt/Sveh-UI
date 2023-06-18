@@ -21,7 +21,7 @@ declare const __propDef: {
         size?: TextInputSize | undefined;
     };
     events: {
-        change: CustomEvent<any>;
+        change: Event;
     } & {
         [evt: string]: CustomEvent<any>;
     };
