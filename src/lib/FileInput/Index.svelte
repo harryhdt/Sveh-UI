@@ -21,6 +21,8 @@
 	export let containerClass = '';
 	export let onClearFiles: (() => void) | null = null;
 
+	let inputFileElm: HTMLInputElement;
+
 	// sizing
 	export let size: TextInputSize = 'medium';
 	const iconSizes = {
@@ -58,6 +60,7 @@
 
 <label bind:this={labelRef} class="relative block {containerClass}">
 	<input
+		bind:this={inputFileElm}
 		{name}
 		type="file"
 		bind:files
@@ -104,7 +107,10 @@
 				class="absolute right-0 {iconTopOffsets[size]} {error
 					? 'text-error-600'
 					: 'text-gray-600'} p-2.5 transition-all duration-300 hover:opacity-70 active:scale-90"
-				on:click={deleteFile}
+				on:click={() => {
+					inputFileElm.dispatchEvent(new Event('change'));
+					deleteFile();
+				}}
 			>
 				<XIcon class={iconSizes[size]} />
 			</button>

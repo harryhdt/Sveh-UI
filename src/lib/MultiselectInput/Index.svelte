@@ -1,7 +1,6 @@
 <script lang="ts">
 	// @ts-nocheck
 	import { fly } from 'svelte/transition';
-	import { createEventDispatcher } from 'svelte';
 	import TextInput from '../TextInput/Index.svelte';
 	import { focusTrap } from 'svelte-focus-trap';
 	import type { DataStatus, KeyText, TextInputSize } from '../types';

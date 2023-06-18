@@ -15,6 +15,7 @@ export let multiple = false;
 export { className as class };
 export let containerClass = "";
 export let onClearFiles = null;
+let inputFileElm;
 export let size = "medium";
 const iconSizes = {
   small: "w-4 h-4",
@@ -47,6 +48,7 @@ $:
 
 <label bind:this={labelRef} class="relative block {containerClass}">
 	<input
+		bind:this={inputFileElm}
 		{name}
 		type="file"
 		bind:files
@@ -93,7 +95,10 @@ $:
 				class="absolute right-0 {iconTopOffsets[size]} {error
 					? 'text-error-600'
 					: 'text-gray-600'} p-2.5 transition-all duration-300 hover:opacity-70 active:scale-90"
-				on:click={deleteFile}
+				on:click={() => {
+					inputFileElm.dispatchEvent(new Event('change'));
+					deleteFile();
+				}}
 			>
 				<XIcon class={iconSizes[size]} />
 			</button>

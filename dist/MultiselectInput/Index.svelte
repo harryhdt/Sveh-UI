@@ -1,5 +1,4 @@
 <script>import { fly } from "svelte/transition";
-import { createEventDispatcher } from "svelte";
 import TextInput from "../TextInput/Index.svelte";
 import { focusTrap } from "svelte-focus-trap";
 import { ChevronDown as ChevronDownIcon } from "lucide-svelte";
