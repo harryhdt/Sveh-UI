@@ -83,12 +83,12 @@
 					<XIcon class="m-[2px] h-5 w-5" />
 				</Button>
 			{/if}
-			<img in:fade|local src={imageSrc ? imageSrc : imageReal} alt="Preview" class="h-auto w-20" />
+			<img in:fade src={imageSrc ? imageSrc : imageReal} alt="Preview" class="h-auto w-20" />
 		{:else}
 			<button
 				type="button"
 				on:click={openFileUpload}
-				in:fade|local
+				in:fade
 				class="flex h-20 w-20 items-center justify-center rounded-full bg-secondary-200"
 			>
 				<ImageIcon class="pointer-events-none h-12 w-12 text-secondary-700" />
