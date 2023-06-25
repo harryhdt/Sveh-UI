@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { XIcon, FileIcon } from 'lucide-svelte';
+	import Icon from '@iconify/svelte';
 	import { TextInput } from '$lib';
 	import type { TextInputSize } from '$lib/types';
 
@@ -99,7 +99,7 @@
 				? 'text-error-400'
 				: 'text-gray-400'} transition-all duration-300 hover:opacity-70 active:scale-90"
 		>
-			<FileIcon class={iconSizes[size]} />
+			<Icon icon="lucide:file" class={iconSizes[size]} />
 		</div>
 		{#if files && files.length}
 			<button
@@ -112,7 +112,7 @@
 					deleteFile();
 				}}
 			>
-				<XIcon class={iconSizes[size]} />
+				<Icon icon="lucide:x" class={iconSizes[size]} />
 			</button>
 		{/if}
 	</div>

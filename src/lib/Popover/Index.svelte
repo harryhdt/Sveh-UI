@@ -39,7 +39,7 @@
 			use:focusTrap
 			on:keydown={handleKeyDown}
 			bind:this={element}
-			transition:fly={{ y: -8, duration: 200 }}
+			transition:fly|global={{ y: -8, duration: 200 }}
 			class="absolute mt-2 rounded-md bg-white p-2 shadow"
 		>
 			<button class="absolute opacity-0" />

@@ -1,6 +1,6 @@
 <script lang="ts">
+	import Icon from '@iconify/svelte';
 	import type { ColorProps, ColorValues, TextInputSize } from '../types';
-	import { XIcon } from 'lucide-svelte';
 	import { afterUpdate } from 'svelte';
 
 	import { createEventDispatcher } from 'svelte';
@@ -71,7 +71,7 @@
 			on:click={onClose}
 			class="ml-auto mt-[2px] transition-opacity hover:opacity-75 active:scale-90"
 		>
-			<XIcon class={iconSizes[size]} />
+			<Icon icon="lucide:x" class={iconSizes[size]} />
 		</button>
 	{/if}
 </div>

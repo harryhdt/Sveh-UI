@@ -4,7 +4,7 @@
 	import TextInput from '../TextInput/Index.svelte';
 	import { focusTrap } from 'svelte-focus-trap';
 	import type { DataStatus, KeyText, TextInputSize } from '../types';
-	import { ChevronDown as ChevronDownIcon } from 'lucide-svelte';
+	import Icon from '@iconify/svelte';
 	import { clickOutside } from '$lib/Tools/click-outside';
 
 	let className = '';
@@ -129,13 +129,13 @@
 				: ''} {show && '-rotate-180'}"
 			on:click={() => (show = !show)}
 		>
-			<ChevronDownIcon class="h-5 w-5" />
+			<Icon icon="lucide:chevron-down" class="h-5 w-5" />
 		</button>
 	</div>
 	<input bind:this={selectInputElm} type="text" {name} bind:value on:change class="hidden" />
 	{#if show}
 		<div
-			transition:fly|local={{ y: -8, duration: 200 }}
+			transition:fly={{ y: -8, duration: 200 }}
 			class="select-area absolute left-0 right-0 mt-2 max-h-[208px] space-y-[2px] overflow-y-auto rounded-md bg-white p-1 shadow {optionAreaClass}"
 		>
 			{#if Array.isArray(data)}

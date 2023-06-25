@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
-	import { afterUpdate, createEventDispatcher } from 'svelte';
+	import { afterUpdate } from 'svelte';
 	import Button from '../Button/Index.svelte';
 	import FileInput from '../FileInput/Index.svelte';
-	import { XIcon, ImageIcon } from 'lucide-svelte';
+	import Icon from '@iconify/svelte';
 	import type { TextInputSize } from '$lib/types';
 	import Label from '$lib/Constants/Label.svelte';
 
@@ -80,18 +80,18 @@
 					color="error"
 					{disabled}
 				>
-					<XIcon class="m-[2px] h-5 w-5" />
+					<Icon icon="lucide:x" class="m-[2px] h-5 w-5" />
 				</Button>
 			{/if}
-			<img in:fade|local src={imageSrc ? imageSrc : imageReal} alt="Preview" class="h-auto w-20" />
+			<img in:fade src={imageSrc ? imageSrc : imageReal} alt="Preview" class="h-auto w-20" />
 		{:else}
 			<button
 				type="button"
 				on:click={openFileUpload}
-				in:fade|local
+				in:fade
 				class="flex h-20 w-20 items-center justify-center rounded-full bg-secondary-200"
 			>
-				<ImageIcon class="pointer-events-none h-12 w-12 text-secondary-700" />
+				<Icon icon="lucide:image" class="pointer-events-none h-12 w-12 text-secondary-700" />
 			</button>
 		{/if}
 	</div>
