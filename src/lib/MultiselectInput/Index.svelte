@@ -135,7 +135,7 @@
 	<input bind:this={selectInputElm} type="text" {name} bind:value on:change class="hidden" />
 	{#if show}
 		<div
-			transition:fly={{ y: -8, duration: 200 }}
+			transition:fly|local={{ y: -8, duration: 200 }}
 			class="select-area absolute left-0 right-0 mt-2 max-h-[208px] space-y-[2px] overflow-y-auto rounded-md bg-white p-1 shadow {optionAreaClass}"
 		>
 			{#if Array.isArray(data)}
