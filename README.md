@@ -8,7 +8,7 @@ Please install following libs:
 
 - Tailwind 3
 - Tailwind Form
-- Lucide icons
+- Iconify
 - Svelte Focus Trap
 
 ### Preset
