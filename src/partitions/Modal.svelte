@@ -17,7 +17,7 @@
 			{/if}
 		</Button>
 		<Modal bind:show {disableEsc}>
-			<div transition:fly={{ y: 16, duration: 200 }} class="rounded-md bg-white p-4">Hai</div>
+			<div transition:fly|local={{ y: 16, duration: 200 }} class="rounded-md bg-white p-4">Hai</div>
 		</Modal>
 	</div>
 	<div class="flex max-w-lg flex-wrap items-start gap-4">
