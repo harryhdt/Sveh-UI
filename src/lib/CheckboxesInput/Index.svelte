@@ -1,11 +1,9 @@
 <script lang="ts">
 	import Label from '$lib/Constants/Label.svelte';
-	import { createEventDispatcher } from 'svelte';
 	import { ucFirst } from '../Tools/string';
 	import type { KeyText, TextInputSize } from '../types';
 
-	const dispatch = createEventDispatcher();
-
+	let checkboxesInputElm: HTMLInputElement;
 	let className = '';
 
 	// props
@@ -33,7 +31,6 @@
 	//
 	const handleChecked = (e: any, i: number) => {
 		const { checked, value } = e.currentTarget;
-		dispatch('change', { value, checked }); // e.detail.value for get value
 		if (checked && !options[i].checked) {
 			options[i].checked = true;
 			values[values.length] = valueAsNumber ? parseInt(value) : value;
@@ -41,11 +38,15 @@
 			options[i].checked = false;
 			values = values.filter((x) => x !== (valueAsNumber ? parseInt(value) : value));
 		}
+		setTimeout(() => {
+			checkboxesInputElm.dispatchEvent(new Event('change'));
+		}, 10);
 	};
 
-	const handleSingleChecked = (e: any) => {
-		const { checked, value } = e.currentTarget;
-		dispatch('change', { value, checked }); // e.detail.value for get value
+	const handleSingleChecked = () => {
+		setTimeout(() => {
+			checkboxesInputElm.dispatchEvent(new Event('change'));
+		}, 10);
 	};
 </script>
 
@@ -55,6 +56,14 @@
 	</Label>
 	<div class="flex flex-wrap items-center {disabled ? 'cursor-not-allowed' : ''} {optionsClass}">
 		{#if !single}
+			<input
+				bind:this={checkboxesInputElm}
+				type="text"
+				{name}
+				bind:value={values}
+				on:change
+				class="hidden"
+			/>
 			{#each options as option, i}
 				<label
 					class="mb-2 mr-4 flex flex-shrink-0 items-center {disabled ? 'cursor-not-allowed' : ''}"
@@ -85,6 +94,14 @@
 				</label>
 			{/each}
 		{:else}
+			<input
+				bind:this={checkboxesInputElm}
+				type="text"
+				{name}
+				bind:value
+				on:change
+				class="hidden"
+			/>
 			<label
 				class="mb-2 mr-4 flex flex-shrink-0 items-center {disabled ? 'cursor-not-allowed' : ''}"
 				for={name}
