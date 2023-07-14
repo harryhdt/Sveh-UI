@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { CheckboxesInput } from '$lib';
-	import type { KeyText, TextInputSize } from '$lib/types';
+	import type { TextInputSize } from '$lib/types';
 
 	let text = 'Sure';
 	let value = false;

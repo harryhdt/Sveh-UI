@@ -49,6 +49,7 @@
 	};
 </script>
 
+<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 <label
 	bind:this={container}
 	class="relative z-[80] block {disabled ? 'cursor-not-allowed' : ''} {containerClass}"

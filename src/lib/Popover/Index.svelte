@@ -35,6 +35,7 @@
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<slot name="button" {setShow} />
 	{#if show}
+		<!-- svelte-ignore a11y-no-static-element-interactions -->
 		<div
 			use:focusTrap
 			on:keydown={handleKeyDown}

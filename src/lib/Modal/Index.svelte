@@ -34,6 +34,7 @@
 <slot name="button" {toggleShow} />
 {#if show}
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
+	<!-- svelte-ignore a11y-no-static-element-interactions -->
 	<div
 		use:focusTrap
 		bind:this={element}
