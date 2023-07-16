@@ -4,6 +4,7 @@
 	import type { AutocompleteProps, TextInputSize } from '$lib/types';
 	import { Button } from '$lib';
 	import Icon from '@iconify/svelte';
+	import { createEventDispatcher } from 'svelte';
 
 	let className = '';
 
@@ -27,6 +28,11 @@
 		medium: 'h-10 px-3 text-base',
 		big: 'h-12 px-4 text-lg'
 	};
+
+	let dispatch = createEventDispatcher();
+	$: if (values) {
+		dispatch('change', { values });
+	}
 </script>
 
 <label class="block {disabled ? 'cursor-not-allowed opacity-50' : ''} {containerClass}">
