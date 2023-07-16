@@ -7,6 +7,7 @@
 	import ImageInput from '../partitions/ImageInput.svelte';
 	import ImagesInput from '../partitions/ImagesInput.svelte';
 	import Modal from '../partitions/Modal.svelte';
+	import MultipletextInput from '../partitions/MultipletextInput.svelte';
 	import MultiselectInput from '../partitions/MultiselectInput.svelte';
 	import Popover from '../partitions/Popover.svelte';
 	import SelectInput from '../partitions/SelectInput.svelte';
@@ -28,6 +29,7 @@
 		<Alert />
 		<Button />
 		<TextInput />
+		<MultipletextInput />
 		<FileInput />
 		<ImageInput />
 		<ImagesInput />
