@@ -83,6 +83,7 @@
 			color="secondary"
 			fullWidth
 			align="center"
+			disabled={readonly || disabled}
 		>
 			<Icon icon="lucide:plus" class="mx-auto h-5 w-5" />
 		</Button>
