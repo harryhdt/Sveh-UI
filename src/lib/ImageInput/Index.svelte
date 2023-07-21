@@ -87,7 +87,7 @@
 				in:fade
 				src={imageSrc ? imageSrc : imageReal}
 				alt=""
-				class="w-20 h-20 object-center object-cover bg-secondary-200 flex items-center justify-center text-secondary-700 border-0"
+				class="flex h-20 w-20 items-center justify-center border-0 bg-secondary-200 object-cover object-center text-secondary-700"
 			/>
 		{:else}
 			<button
