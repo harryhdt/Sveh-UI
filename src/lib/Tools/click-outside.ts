@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-export function clickOutside(node: any) {
-	const handleClick = (event: any) => {
-		if (node && !node.contains(event.target) && !event.defaultPrevented) {
-			node.dispatchEvent(new CustomEvent('click_outside', node));
+export function clickOutside(node: HTMLElement) {
+	const handleClick = (event: Event) => {
+		if (node && !node.contains(event.target as Node) && !event.defaultPrevented) {
+			node.dispatchEvent(new CustomEvent('click_outside', { detail: node }));
 		}
 	};
 

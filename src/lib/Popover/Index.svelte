@@ -1,7 +1,7 @@
 <script lang="ts">
 	// @ts-nocheck
 	import { clickOutside } from '../Tools/click-outside';
-	import { focusTrap } from 'svelte-focus-trap';
+	import { trapFocus } from '$lib/Tools/focus-trap';
 	import { fly } from 'svelte/transition';
 
 	export let disableEsc = false;
@@ -37,13 +37,13 @@
 	{#if show}
 		<!-- svelte-ignore a11y-no-static-element-interactions -->
 		<div
-			use:focusTrap
+			use:trapFocus={{ active: show }}
 			on:keydown={handleKeyDown}
 			bind:this={element}
 			transition:fly|global={{ y: -8, duration: 200 }}
-			class="absolute mt-2 rounded-md bg-white p-2 shadow"
+			class="absolute mt-2"
 		>
-			<button class="absolute opacity-0" />
+			<button class="absolute opacity-0" tabindex="-1" />
 			<slot name="body" {setShow} />
 		</div>
 	{/if}

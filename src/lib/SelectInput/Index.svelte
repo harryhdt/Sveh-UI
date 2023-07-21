@@ -1,6 +1,7 @@
 <script lang="ts">
 	// @ts-nocheck
 	import { clickOutside } from '../Tools/click-outside';
+	import { trapFocus } from '../Tools/focus-trap';
 	import { fly } from 'svelte/transition';
 	import TextInput from '../TextInput/Index.svelte';
 	import type { DataStatus, KeyText, TextInputSize } from '../types';
@@ -84,6 +85,7 @@
 	use:clickOutside
 	on:keydown={handleKeyDown}
 	on:click_outside={() => (show = false)}
+	use:trapFocus={{ active: show }}
 >
 	<Label {label} {error} {required}>
 		<slot name="suffix-label" slot="suffix-label" />
@@ -146,7 +148,15 @@
 			</button>
 		{/if}
 	</div>
-	<input bind:this={selectInputElm} type="text" {name} bind:value on:change class="hidden" />
+	<input
+		bind:this={selectInputElm}
+		type="text"
+		{name}
+		bind:value
+		on:change
+		class="hidden"
+		tabindex="-1"
+	/>
 	{#if show}
 		<div
 			transition:fly={{ y: -8, duration: 200 }}
@@ -167,7 +177,7 @@
 						}}
 						on:keydown={disableScroller}
 						type="button"
-						class="block w-full rounded-md px-2 py-1 text-left outline-none hover:bg-gray-100 focus-visible:bg-gray-200 {(searchValue ===
+						class="block w-full rounded-md px-2 py-1 text-left outline-none hover:bg-gray-100 focus:bg-gray-200 focus-visible:bg-gray-200 {(searchValue ===
 							select.text ||
 							value === select.text) &&
 							'bg-gray-100'}">{select.text}</button
