@@ -8,7 +8,6 @@ Please install following libs:
 
 - Tailwind 3
 - Tailwind Form
-- Iconify
 
 ### Preset
 

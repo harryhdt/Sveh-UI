@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Icon from '@iconify/svelte';
 	import { TextInput } from '$lib';
 	import type { TextInputSize } from '$lib/types';
 
@@ -99,7 +98,25 @@
 				? 'text-error-400'
 				: 'text-gray-400'} transition-all duration-300 hover:opacity-70 active:scale-90"
 		>
-			<Icon icon="lucide:file" class={iconSizes[size]} />
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				aria-hidden="true"
+				role="img"
+				class={iconSizes[size]}
+				width="1em"
+				height="1em"
+				viewBox="0 0 24 24"
+				><g
+					fill="none"
+					stroke="currentColor"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					stroke-width="2"
+					><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" /><path
+						d="M14 2v6h6"
+					/></g
+				></svg
+			>
 		</div>
 		{#if files && files.length}
 			<button
@@ -112,7 +129,23 @@
 					deleteFile();
 				}}
 			>
-				<Icon icon="lucide:x" class={iconSizes[size]} />
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					aria-hidden="true"
+					role="img"
+					class={iconSizes[size]}
+					width="1em"
+					height="1em"
+					viewBox="0 0 24 24"
+					><path
+						fill="none"
+						stroke="currentColor"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M18 6L6 18M6 6l12 12"
+					/></svg
+				>
 			</button>
 		{/if}
 	</div>

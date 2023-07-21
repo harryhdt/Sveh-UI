@@ -3,7 +3,6 @@
 	import { afterUpdate } from 'svelte';
 	import Button from '../Button/Index.svelte';
 	import FileInput from '../FileInput/Index.svelte';
-	import Icon from '@iconify/svelte';
 	import type { TextInputSize } from '$lib/types';
 	import Label from '$lib/Constants/Label.svelte';
 
@@ -94,7 +93,23 @@
 								color="error"
 								{disabled}
 							>
-								<Icon icon="lucide:x" class="m-[2px] h-5 w-5" />
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									aria-hidden="true"
+									role="img"
+									class="m-[2px] h-5 w-5"
+									width="1em"
+									height="1em"
+									viewBox="0 0 24 24"
+									><path
+										fill="none"
+										stroke="currentColor"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="2"
+										d="M18 6L6 18M6 6l12 12"
+									/></svg
+								>
 							</Button>
 							<img
 								in:fade
@@ -113,7 +128,27 @@
 				in:fade
 				class="flex h-20 w-20 items-center justify-center rounded-full bg-secondary-200"
 			>
-				<Icon icon="lucide:image" class="pointer-events-none h-12 w-12 text-secondary-700" />
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					aria-hidden="true"
+					role="img"
+					class="pointer-events-none h-12 w-12 text-secondary-700"
+					width="1em"
+					height="1em"
+					viewBox="0 0 24 24"
+					><g
+						fill="none"
+						stroke="currentColor"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						><rect width="18" height="18" x="3" y="3" rx="2" ry="2" /><circle
+							cx="9"
+							cy="9"
+							r="2"
+						/><path d="m21 15l-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /></g
+					></svg
+				>
 			</button>
 		{/if}
 	</div>

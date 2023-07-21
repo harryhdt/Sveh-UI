@@ -3,7 +3,6 @@
 	import { ucFirst } from '$lib/Tools/string';
 	import type { AutocompleteProps, TextInputSize } from '$lib/types';
 	import { Button } from '$lib';
-	import Icon from '@iconify/svelte';
 	import { createEventDispatcher } from 'svelte';
 
 	let className = '';
@@ -71,10 +70,23 @@
 						? '!px-2'
 						: '!px-2.5'}"
 				>
-					<Icon
-						icon="lucide:x"
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						aria-hidden="true"
+						role="img"
 						class={size === 'small' ? 'h-5 w-5' : size === 'medium' ? 'h-6 w-6' : 'h-7 w-7'}
-					/>
+						width="1em"
+						height="1em"
+						viewBox="0 0 24 24"
+						><path
+							fill="none"
+							stroke="currentColor"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M18 6L6 18M6 6l12 12"
+						/></svg
+					>
 				</Button>
 			</div>
 		{/each}
@@ -85,7 +97,23 @@
 			align="center"
 			disabled={readonly || disabled}
 		>
-			<Icon icon="lucide:plus" class="mx-auto h-5 w-5" />
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				aria-hidden="true"
+				role="img"
+				class="mx-auto h-5 w-5"
+				width="1em"
+				height="1em"
+				viewBox="0 0 24 24"
+				><path
+					fill="none"
+					stroke="currentColor"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					stroke-width="2"
+					d="M5 12h14m-7-7v14"
+				/></svg
+			>
 		</Button>
 	</div>
 	{#if error || helper}

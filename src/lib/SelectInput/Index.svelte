@@ -5,7 +5,6 @@
 	import { fly } from 'svelte/transition';
 	import TextInput from '../TextInput/Index.svelte';
 	import type { DataStatus, KeyText, TextInputSize } from '../types';
-	import Icon from '@iconify/svelte';
 	import Label from '$lib/Constants/Label.svelte';
 
 	let className = '';
@@ -144,7 +143,23 @@
 					: ''} {show && '-rotate-180'}"
 				on:click={() => (show = !show)}
 			>
-				<Icon icon="lucide:chevron-down" class="h-5 w-5" />
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					aria-hidden="true"
+					role="img"
+					class="h-5 w-5"
+					width="1em"
+					height="1em"
+					viewBox="0 0 24 24"
+					><path
+						fill="none"
+						stroke="currentColor"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="m6 9l6 6l6-6"
+					/></svg
+				>
 			</button>
 		{/if}
 	</div>
