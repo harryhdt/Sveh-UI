@@ -83,7 +83,12 @@
 					<Icon icon="lucide:x" class="m-[2px] h-5 w-5" />
 				</Button>
 			{/if}
-			<img in:fade src={imageSrc ? imageSrc : imageReal} alt="Preview" class="h-auto w-20" />
+			<img
+				in:fade
+				src={imageSrc ? imageSrc : imageReal}
+				alt=""
+				class="w-20 h-20 object-center object-cover bg-secondary-200 flex items-center justify-center text-secondary-700 border-0"
+			/>
 		{:else}
 			<button
 				type="button"

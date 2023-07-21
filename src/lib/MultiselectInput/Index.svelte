@@ -2,7 +2,6 @@
 	// @ts-nocheck
 	import { fly } from 'svelte/transition';
 	import TextInput from '../TextInput/Index.svelte';
-	import { focusTrap } from 'svelte-focus-trap';
 	import type { DataStatus, KeyText, TextInputSize } from '../types';
 	import Icon from '@iconify/svelte';
 	import { clickOutside } from '$lib/Tools/click-outside';
@@ -22,6 +21,7 @@
 	export let optionAreaClass = '';
 	export let search = false;
 	export let required = false;
+	export let readonly = false;
 	export let disabled = false;
 	export let disableEsc = false;
 	export let size: TextInputSize = 'medium';
@@ -36,6 +36,13 @@
 		if (e.code === 'Escape' && !disableEsc) {
 			container.querySelector('input')?.blur();
 			show = false;
+		}
+		disableScroller(e);
+	};
+
+	const disableScroller = (e) => {
+		if (['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].indexOf(e.code) > -1) {
+			e.preventDefault();
 		}
 	};
 
@@ -54,7 +61,6 @@
 	bind:this={container}
 	class="relative z-[80] block {disabled ? 'cursor-not-allowed' : ''} {containerClass}"
 	use:clickOutside
-	use:focusTrap
 	on:keydown={handleKeyDown}
 	on:click_outside={() => (show = false)}
 >
@@ -81,7 +87,7 @@
 		{/if}
 		<TextInput
 			{name}
-			on:focus={() => (show = true)}
+			on:focus={() => (show = readonly ? false : true)}
 			type="text"
 			bind:value={searchValue}
 			on:blur={handleBlur}
@@ -111,27 +117,30 @@
 			{placeholder}
 			class="pr-8 {className} {value.length ? 'pl-10' : ''}"
 			autocomplete="off"
-			readonly={!search}
+			readonly={!search || readonly}
 			{required}
 			{error}
 			{helper}
 			{disabled}
 			{size}
 		/>
-		<button
-			{disabled}
-			type="button"
-			class="absolute {size === 'small'
-				? 'right-1.5 top-1.5'
-				: size === 'big'
-				? 'right-3  top-4'
-				: 'right-2 top-[11px]'} transform outline-none transition-transform duration-200 focus-visible:rounded-md focus-visible:ring-2 focus-visible:ring-gray-300 {disabled
-				? 'cursor-not-allowed opacity-50'
-				: ''} {show && '-rotate-180'}"
-			on:click={() => (show = !show)}
-		>
-			<Icon icon="lucide:chevron-down" class="h-5 w-5" />
-		</button>
+		{#if !readonly}
+			<button
+				{disabled}
+				tabindex="-1"
+				type="button"
+				class="absolute {size === 'small'
+					? 'right-1.5 top-1.5'
+					: size === 'big'
+					? 'right-3  top-4'
+					: 'right-2 top-[11px]'} transform outline-none transition-transform duration-200 focus-visible:rounded-md focus-visible:ring-2 focus-visible:ring-gray-300 {disabled
+					? 'cursor-not-allowed opacity-50'
+					: ''} {show && '-rotate-180'}"
+				on:click={() => (show = !show)}
+			>
+				<Icon icon="lucide:chevron-down" class="h-5 w-5" />
+			</button>
+		{/if}
 	</div>
 	<input bind:this={selectInputElm} type="text" {name} bind:value on:change class="hidden" />
 	{#if show}
@@ -154,6 +163,7 @@
 								selectInputElm.dispatchEvent(new Event('change'));
 							}, 10);
 						}}
+						on:keydown={disableScroller}
 						type="button"
 						class="block w-full rounded-md px-2 py-1 text-left outline-none hover:bg-gray-100 focus-visible:bg-gray-200 {value.indexOf(
 							select.key

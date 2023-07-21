@@ -3,7 +3,6 @@
 	import { clickOutside } from '../Tools/click-outside';
 	import { fly } from 'svelte/transition';
 	import TextInput from '../TextInput/Index.svelte';
-	import { focusTrap } from 'svelte-focus-trap';
 	import type { DataStatus, KeyText, TextInputSize } from '../types';
 	import Icon from '@iconify/svelte';
 	import Label from '$lib/Constants/Label.svelte';
@@ -47,6 +46,13 @@
 			container.querySelector('input')?.blur();
 			show = false;
 		}
+		disableScroller(e);
+	};
+
+	const disableScroller = (e) => {
+		if (['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].indexOf(e.code) > -1) {
+			e.preventDefault();
+		}
 	};
 
 	const handleSearch = () => {
@@ -76,7 +82,6 @@
 	bind:this={container}
 	class="relative z-[80] block {disabled ? 'cursor-not-allowed opacity-50' : ''} {containerClass}"
 	use:clickOutside
-	use:focusTrap
 	on:keydown={handleKeyDown}
 	on:click_outside={() => (show = false)}
 >
@@ -126,6 +131,7 @@
 		{#if !readonly}
 			<button
 				{disabled}
+				tabindex="-1"
 				type="button"
 				class="absolute {size === 'small'
 					? 'right-1.5 top-1.5'
@@ -159,6 +165,7 @@
 								selectInputElm.dispatchEvent(new Event('change'));
 							}, 10);
 						}}
+						on:keydown={disableScroller}
 						type="button"
 						class="block w-full rounded-md px-2 py-1 text-left outline-none hover:bg-gray-100 focus-visible:bg-gray-200 {(searchValue ===
 							select.text ||

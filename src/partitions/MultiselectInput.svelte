@@ -11,6 +11,7 @@
 	let search = false;
 	let required = false;
 	let disabled = false;
+	let readonly = false;
 	let disableEsc = false;
 	let size: TextInputSize = 'medium';
 </script>
@@ -53,6 +54,7 @@
 			{error}
 			{helper}
 			{required}
+			{readonly}
 			{size}
 			{disableEsc}
 		/>
@@ -69,6 +71,10 @@
 		<label>
 			<input type="checkbox" bind:checked={disabled} />
 			<span>Disabled</span>
+		</label>
+		<label>
+			<input type="checkbox" bind:checked={readonly} />
+			<span>Readonly</span>
 		</label>
 		<label>
 			<input type="checkbox" bind:checked={required} />
