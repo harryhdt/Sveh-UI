@@ -3,6 +3,7 @@
 	import { clickOutside } from '../Tools/click-outside';
 	import { trapFocus } from '$lib/Tools/focus-trap';
 	import { fly } from 'svelte/transition';
+	import { afterUpdate } from 'svelte';
 
 	export let disableEsc = false;
 
@@ -16,9 +17,11 @@
 	};
 
 	let element: HTMLElement;
-	$: if (show && element) {
-		element.querySelector('button')?.focus();
-	}
+	afterUpdate(() => {
+		if (show) {
+			element.querySelector('#initial-focus-button')?.remove();
+		}
+	});
 </script>
 
 <div
@@ -43,7 +46,7 @@
 			transition:fly|global={{ y: -8, duration: 200 }}
 			class="absolute mt-2"
 		>
-			<button class="absolute opacity-0" tabindex="-1" />
+			<button id="initial-focus-button" class="absolute opacity-0" />
 			<slot name="body" {setShow} />
 		</div>
 	{/if}

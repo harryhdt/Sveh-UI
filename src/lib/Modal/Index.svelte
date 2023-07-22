@@ -2,7 +2,7 @@
 	import { trapFocus } from '$lib/Tools/focus-trap';
 	import { fade } from 'svelte/transition';
 
-	import { createEventDispatcher } from 'svelte';
+	import { afterUpdate, createEventDispatcher } from 'svelte';
 
 	const dispatch = createEventDispatcher();
 
@@ -26,9 +26,11 @@
 	const toggleShow = () => (show = !show);
 
 	let element: HTMLElement;
-	$: if (show && element) {
-		element.querySelector('button')?.focus();
-	}
+	afterUpdate(() => {
+		if (show) {
+			element.querySelector('#initial-focus-button')?.remove();
+		}
+	});
 </script>
 
 <slot name="button" {toggleShow} />
@@ -44,7 +46,7 @@
 		transition:fade={{ duration: 200 }}
 		on:click|self={closeModal}
 	>
-		<button class="absolute opacity-0" tabindex="-1" />
+		<button id="initial-focus-button" class="absolute opacity-0" />
 		<slot {toggleShow} />
 	</div>
 {/if}
