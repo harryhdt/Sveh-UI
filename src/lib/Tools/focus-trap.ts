@@ -54,7 +54,6 @@ export function trapFocus(node: HTMLElement, props: Props = { active: false }) {
 	function setup(props: Props) {
 		if (props.active) {
 			focusable()[0]?.focus();
-			console.log(focusable());
 			node.addEventListener('focusin', handleFocusin);
 			node.addEventListener('keydown', handleKeydown);
 		} else {
