@@ -11,6 +11,7 @@
 	const setShow = (cond: boolean) => (show = cond);
 
 	const handleKeyDown = (e: KeyboardEvent) => {
+		console.log(e);
 		if (e.code === 'Escape' && !disableEsc) {
 			show = false;
 		}
@@ -19,7 +20,7 @@
 	let element: HTMLElement;
 	afterUpdate(() => {
 		if (show) {
-			element.querySelector('#initial-focus-button')?.remove();
+			element.querySelector('#initial-focus-button')?.setAttribute('tabindex', '-1');
 		}
 	});
 </script>

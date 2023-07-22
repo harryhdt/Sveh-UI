@@ -28,7 +28,7 @@
 	let element: HTMLElement;
 	afterUpdate(() => {
 		if (show) {
-			element.querySelector('#initial-focus-button')?.remove();
+			element.querySelector('#initial-focus-button')?.setAttribute('tabindex', '-1');
 		}
 	});
 </script>
