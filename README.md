@@ -18,18 +18,18 @@ Add `content`, extend `colors` theme and `plugin`
     	theme: {
     		extend: {
     			colors: {
-        			primary: {
-        				50: '#EDF4FC',
-        				100: '#DCEAF9',
-        				200: '#B9D4F4',
-        				300: '#91BCED',
-        				400: '#6EA7E8',
-        				500: '#4A90E2',
-        				600: '#2172CF',
-        				700: '#19559A',
-        				800: '#113A6A',
-        				900: '#081D35'
-        			},
+    				primary: {
+    					50: '#edf4fc',
+    					100: '#dbe9f9',
+    					200: '#b7d3f3',
+    					300: '#92bcee',
+    					400: '#80b1eb',
+    					500: '#5c9be5',
+    					600: '#4a90e2',
+    					700: '#4382cb',
+    					800: '#3b73b5',
+    					900: '#34659e'
+    				},
     				secondary: {
     					50: '#f6fafe',
     					100: '#edf4fc',
