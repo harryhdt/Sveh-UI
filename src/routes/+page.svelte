@@ -23,7 +23,19 @@
 <div id="ui-demo" class="space-y-4 p-4">
 	<div class="mb-4 flex items-center justify-between">
 		<h1 class="text-4xl font-medium">Sveh UI</h1>
-		<span class="text-gray-500">V0.0.1</span>
+		<div class="flex items-center gap-x-4">
+			<a
+				href="https://www.npmjs.com/package/sveh-ui"
+				target="_blank"
+				class="text-primary-800 transition-colors hover:text-gray-500">NPM</a
+			>
+			<a
+				href="https://github.com/harryhdt/Sveh-UI"
+				target="_blank"
+				class="text-primary-800 transition-colors hover:text-gray-500">Github</a
+			>
+			<span class="text-gray-500">V0.3.3</span>
+		</div>
 	</div>
 	<div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
 		<Alert />

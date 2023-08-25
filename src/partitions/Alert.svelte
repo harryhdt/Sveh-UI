@@ -6,14 +6,27 @@
 	let message = 'Ini alert';
 	let closeAble = true;
 	let size: TextInputSize = 'medium';
+
+	let alert = new Date().getTime();
+	const showAgain = () => {
+		alert = new Date().getTime();
+	};
 </script>
 
 <div id="button" class="border border-gray-200 bg-gray-50 p-4">
 	<h3 class="text-2xl font-bold">Alert</h3>
 	<div class="my-4 min-h-[120px] max-w-lg bg-gray-100 p-4">
-		<Alert {color} {size} {message} {closeAble} />
+		{#key alert}
+			<Alert {color} {size} {message} {closeAble} />
+		{/key}
 	</div>
 	<div class="flex max-w-lg flex-wrap items-start gap-4">
+		<div>
+			<button
+				on:click={showAgain}
+				class="rounded bg-gray-100 px-4 py-1.5 transition-colors hover:bg-gray-200">Show</button
+			>
+		</div>
 		<div>
 			<span>Size</span>
 			<select name="size" bind:value={size}>
