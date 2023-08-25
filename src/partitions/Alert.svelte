@@ -2,7 +2,7 @@
 	import { Alert } from '$lib';
 	import type { ColorProps, TextInputSize } from '$lib/types';
 
-	let color: ColorProps = 'primary';
+	let color: ColorProps = 'error';
 	let message = 'Ini alert';
 	let closeAble = true;
 	let size: TextInputSize = 'medium';
