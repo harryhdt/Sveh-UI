@@ -4,6 +4,7 @@
 
 	let placeholder = 'Pick Date (Time)';
 	let label = 'Birthday';
+	let altFormat = 'F j, Y';
 	let autocomplete: AutocompleteProps = 'on';
 	let error = '';
 	let helper = '';
@@ -22,6 +23,7 @@
 			name="bali-date"
 			{size}
 			{enableTime}
+			bind:altFormat
 			{autocomplete}
 			{disabled}
 			{placeholder}
@@ -70,6 +72,10 @@
 			<input type="checkbox" bind:checked={readonly} />
 			<span>Readonly</span>
 		</label>
+		<div class="flex items-center gap-1">
+			<span>Format</span>
+			<input type="text" bind:value={altFormat} class="w-32" placeholder="@text" />
+		</div>
 		<div class="flex items-center gap-1">
 			<span>Label</span>
 			<input type="text" bind:value={label} class="w-32" placeholder="@text" />
