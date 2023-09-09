@@ -3,6 +3,7 @@
 	import Button from '../partitions/Button.svelte';
 	import CheckboxesInput from '../partitions/CheckboxesInput.svelte';
 	import CheckboxInput from '../partitions/CheckboxInput.svelte';
+	import DateInput from '../partitions/DateInput.svelte';
 	import FileInput from '../partitions/FileInput.svelte';
 	import ImageInput from '../partitions/ImageInput.svelte';
 	import ImagesInput from '../partitions/ImagesInput.svelte';
@@ -42,6 +43,7 @@
 		<Button />
 		<TextInput />
 		<MultipletextInput />
+		<DateInput />
 		<FileInput />
 		<ImageInput />
 		<ImagesInput />

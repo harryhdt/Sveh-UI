@@ -10,6 +10,7 @@ export { default as Popover } from '$lib/Popover/Index.svelte';
 export { default as SelectInput } from '$lib/SelectInput/Index.svelte';
 export { default as MultiselectInput } from '$lib/MultiselectInput/Index.svelte';
 export { default as TextInput } from '$lib/TextInput/Index.svelte';
+export { default as DateInput } from '$lib/DateInput/Index.svelte';
 export { default as MultipletextInput } from '$lib/MultipletextInput/Index.svelte';
 export { default as Switch } from '$lib/Switch/Index.svelte';
 export { default as Tabs } from '$lib/Tabs/Index.svelte';
