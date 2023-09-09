@@ -14,7 +14,6 @@
 	export let label = '';
 	export let autocomplete: AutocompleteProps = 'on';
 	export let enableTime = false;
-	export let altFormat = 'F j, Y';
 	export let error = '';
 	export let helper = '';
 	export let required = false;
@@ -47,8 +46,8 @@
 		);
 	}
 
-	$: if (enableTime) altFormat = 'F j, Y H:i:S';
-	else altFormat = 'F j, Y';
+	let altFormat = 'F j, Y';
+	$: altFormat = enableTime ? 'F j, Y H:i:S' : 'F j, Y';
 </script>
 
 <label class="block {disabled ? 'cursor-not-allowed opacity-50' : ''} {containerClass}">
