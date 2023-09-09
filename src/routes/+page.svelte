@@ -35,7 +35,7 @@
 				target="_blank"
 				class="text-primary-800 transition-colors hover:text-gray-500">Github</a
 			>
-			<span class="text-gray-500">V0.3.6</span>
+			<span class="text-gray-500">V0.3.8</span>
 		</div>
 	</div>
 	<div class="grid grid-cols-1 gap-4 lg:grid-cols-2">

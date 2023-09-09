@@ -7,6 +7,7 @@
 	let autocomplete: AutocompleteProps = 'on';
 	let error = '';
 	let helper = '';
+	let defaultDate = 'November 21, 2024 15:30:45';
 	let enableTime = false;
 	let required = false;
 	let readonly = false;
@@ -30,6 +31,7 @@
 			{helper}
 			{readonly}
 			{required}
+			bind:value={defaultDate}
 		>
 			<svelte:fragment slot="suffix-label">
 				{#if suffixLabel}
@@ -73,6 +75,10 @@
 		<div class="flex items-center gap-1">
 			<span>Label</span>
 			<input type="text" bind:value={label} class="w-32" placeholder="@text" />
+		</div>
+		<div class="flex items-center gap-1">
+			<span>Default value</span>
+			<input type="text" bind:value={defaultDate} class="w-60" placeholder="@text" />
 		</div>
 		<div class="flex items-center gap-1">
 			<span>Suffix label</span>

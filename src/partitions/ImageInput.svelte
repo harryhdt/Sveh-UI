@@ -10,6 +10,7 @@
 	let helper = '';
 	let required = false;
 	let disabled = false;
+	let hideRemoveButton = false;
 	let onClearFiles: (() => void) | null = null;
 	let size: TextInputSize = 'medium';
 	let imageReal: string | undefined = undefined;
@@ -26,6 +27,7 @@
 			{label}
 			{error}
 			{helper}
+			{hideRemoveButton}
 			{required}
 			{accept}
 			bind:imageReal
@@ -49,6 +51,10 @@
 		<label>
 			<input type="checkbox" bind:checked={required} />
 			<span>Required</span>
+		</label>
+		<label>
+			<input type="checkbox" bind:checked={hideRemoveButton} />
+			<span>Hide Remove</span>
 		</label>
 		<div class="flex items-center gap-1">
 			<span>Placeholder</span>

@@ -18,6 +18,7 @@
 	export let accept = 'image/*';
 	export let required = false;
 	export let disabled = false;
+	export let hideRemoveButton = false;
 	export let error = '';
 	export let imageReal: string | null = null;
 	export let deleteImageReal: () => void = () => (imageReal = '');
@@ -71,7 +72,7 @@
 			<slot name="suffix-label" slot="suffix-label" />
 		</Label>
 		{#if showImage || imageReal}
-			{#if imageReal && !imageSrc}
+			{#if imageReal && !imageSrc && !hideRemoveButton}
 				<Button
 					type="button"
 					on:click={deleteImageReal}

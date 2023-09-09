@@ -39,7 +39,8 @@
 					altInput: true,
 					altFormat,
 					enableTime,
-					enableSeconds: enableTime
+					enableSeconds: enableTime,
+					defaultDate: new Date(value)
 				});
 			},
 			firstInit ? 100 : 1
