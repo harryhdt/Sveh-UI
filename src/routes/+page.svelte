@@ -23,6 +23,7 @@
 
 <div id="ui-demo" class="space-y-4 p-4">
 	<div class="mb-4 flex items-center justify-between">
+		<a href="/test">Test</a>
 		<h1 class="text-3xl font-medium sm:text-4xl">Sveh UI</h1>
 		<div class="flex items-center gap-x-4">
 			<a
