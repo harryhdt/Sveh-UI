@@ -3,6 +3,8 @@
 	import Label from '$lib/Constants/Label.svelte';
 	import { ucFirst } from '$lib/Tools/string';
 	import type { AutocompleteProps, TextInputSize } from '$lib/types';
+	import { onDestroy } from 'svelte';
+	import type { Instance } from 'flatpickr/dist/types/instance';
 
 	let className = '';
 
@@ -34,10 +36,11 @@
 
 	let elm: HTMLInputElement;
 	let firstInit = true;
+	let picker: Instance;
 	$: if (elm && (enableTime === true || enableTime === false)) {
 		setTimeout(
 			() => {
-				flatpickr(elm, {
+				picker = flatpickr(elm, {
 					altInput: true,
 					altFormat,
 					enableTime,
@@ -60,6 +63,10 @@
 
 	let altFormat = 'F j, Y';
 	$: altFormat = enableTime ? 'F j, Y H:i:S' : 'F j, Y';
+
+	onDestroy(() => {
+		if (picker) picker.destroy();
+	});
 </script>
 
 <svelte:head>
