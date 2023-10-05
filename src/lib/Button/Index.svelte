@@ -2,6 +2,7 @@
 	import type { ButtonAlign, ButtonColor, ButtonSize, ButtonType, ButtonVariant } from '../types';
 
 	// general props
+	export let title = '';
 	export let type: ButtonType = 'button';
 	export let variant: ButtonVariant = 'solid';
 	export let disabled = false;
@@ -66,6 +67,7 @@
 		: 'text-left'} {disabled ? 'cursor-not-allowed' : ''}"
 >
 	<button
+		{title}
 		{type}
 		on:click
 		class="rounded {colors[color]} {sizes[size]} font-medium transition-all duration-200 {disabled
