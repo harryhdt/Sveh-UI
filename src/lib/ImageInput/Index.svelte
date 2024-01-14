@@ -11,6 +11,8 @@
 
 	export { className as class };
 	export let containerClass = '';
+	export let placeholderClass = '';
+	export let imageClass = '';
 	export let file: File | string | null = null;
 	export let label = 'Photo';
 	export let name = 'photo';
@@ -103,14 +105,14 @@
 				in:fade
 				src={imageSrc ? imageSrc : imageReal}
 				alt=""
-				class="flex h-20 w-20 items-center justify-center border-0 bg-secondary-200 object-cover object-center text-secondary-700"
+				class="flex h-20 w-20 items-center justify-center border-0 bg-secondary-200 object-cover object-center text-secondary-700 {imageClass}"
 			/>
 		{:else}
 			<button
 				type="button"
 				on:click={openFileUpload}
 				in:fade
-				class="flex h-20 w-20 items-center justify-center rounded-full bg-secondary-200"
+				class="flex h-20 w-20 items-center justify-center rounded-full bg-secondary-200 {placeholderClass}"
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
